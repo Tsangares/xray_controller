@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="heat" class="container">
+      <img src="/static/front_heatmap.png">
+      <img src="/static/back_heatmap.png">
+      <img src="/static/overlay.png">
+    </div>
+    <div id="histo" class="container">
+      <img src="/static/pmin_0.png">
+      <img src="/static/pmin_1.png">
+      <img src="/static/pmin_2.png">
+      <img src="/static/pmin_3.png">
+      <img src="/static/pmin_4.png">
+      <img src="/static/pmin_5.png">
+      <img src="/static/pmin_6.png">
+      <img src="/static/pmin_7.png">
+      <img src="/static/pmin_8.png">
+      <img src="/static/pmin_9.png">
+      <img src="/static/pmin_10.png">
+      <img src="/static/pmin_11.png">
+      <img src="/static/pmin_12.png">
+      <img src="/static/pmin_13.png">
+      <img src="/static/pmin_14.png">
+      <img src="/static/pmin_15.png">
+    </div>
+    <style>
+      body{
+        margin: 0;
+      }
+      .container{
+        display: flex;
+        flex-direction: row;
+      }
+      .container>img{
+        flex-basis: 1;
+        justify-content: space-between;
+      }
+      #histo{
+        flex-wrap: wrap;
+      }
+      #histo>img{
+        flex-shrink: 1;
+        flex-basis: 25%;
+      }
+    </style>
+  </body>
+</html>

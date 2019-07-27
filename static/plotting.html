@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/static/jquery.js"></script>
+    <script src="/static/socket.js"></script>
+    <script src="/static/plotting.js"></script>
+  </head>
+  <body>
+    <div id="heat" class="container">
+      hey
+    </div>
+    <style>
+      body{
+        margin: 0;
+      }
+      a{
+        text-decoration: None;
+        color: black;
+      }
+      .container{
+        display: flex;
+        flex-direction: row;
+      }
+      .container>img{
+        flex-basis: 1;
+        justify-content: space-between;
+      }
+      .beaut{
+        font-family: monospace;
+        border-radius: .2rem;
+        padding: .5rem;
+        cursor: pointer;
+        background-color: rgba(255,255,255,1);
+        border: 1px solid rgba(0,0,0,.8);
+        transition: all .1s linear;
+      }
+      .beaut:hover{
+        background-color: rgba(201,201,255,1);
+        color: rgba(0,0,0,.75);
+        border: 1px solid rgba(0,0,0,.2);
+      }
+    </style>
+  </body>
+</html>

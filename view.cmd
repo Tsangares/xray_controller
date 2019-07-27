@@ -1,0 +1,1 @@
+start firefox file:///E:/controller/static/local.html
