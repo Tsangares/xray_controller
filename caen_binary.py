@@ -2,12 +2,15 @@
 def getChan(filename):
     return int(filename[-7:-4].replace('e','').replace('_',''))
 
-def extractFieldInGroup(data,field,key):
+#Parser extractor
+def extractFieldInGroup(data,field,key=None):
     if issubclass(type(data),str): data=data.split('\n')
     found=False
     for i,d in enumerate(data):
         if field in d and '#' not in d:
             found=True
+            if key is None:
+                return d
         if found and key in d:
             return d
 
@@ -39,11 +42,10 @@ def parseBinary(filename, header=True, offset=None, readConfig=True,limit=None, 
             dc_offset=getOffset(filename)
         for i in range(len(d)//length):
             if adc:
-                trace.append([float(w) for w in d[i*length+offset:(i+1)*length]])
+                trace.append([float(w) for w in d[i*length+offset:(i+1)*length-20]])
             else:
                 trace.append([float(w)/(2**12-1)+dc_offset for w in d[i*length+offset:(i+1)*length]])
         return trace
-
 
 def parseAscii(filename):
     with open(filename,mode='r') as f:
@@ -51,3 +53,11 @@ def parseAscii(filename):
 def parse(filename):
     if '.dat' in filename[-4:]: return parseBinary(filename)
     else: return parseAscii(filename)
+#MHz
+def getFreq(config='E:\\config.txt'):
+    freq=[5000,2500,1000,750]
+    with open(config,'r') as f:
+        configData=f.read().split('\n')
+        return freq[int(extractFieldInGroup(configData, 'DRS4_FREQUENCY').split(' ')[-1])]
+if __name__ == '__main__':
+    print(getFreq())

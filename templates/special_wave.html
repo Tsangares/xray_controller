@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Waveforms</title>
+  </head>
+  <body>
+    {% for filename in traces %}
+      <div class="entry">
+        <span><img src="/static/special/wave/{{filename}}"></span>
+      </div>
+    {% endfor %}
+    <img src="/static/special/overlay.png">
+    <style>
+      body{
+        text-align: center;
+      }
+      a{
+        text-decoration: None;
+        color: black;
+      }
+      .entry{
+        display:flex;
+        flex-direction: row;
+      }
+      .entry>img{
+        flex-basis: 100%;
+        justify-content: space-between;
+      }
+      span>img{
+        width: 100%;
+      }
+      #plot{
+        display: inline-block;
+        margin: 1rem;
+      }
+      .beaut{
+        font-family: monospace;
+        font-size: 125%;
+        border-radius: .2rem;
+        padding: .5rem;
+        background-color: rgba(255,255,255,1);
+        transition: all .1s linear;
+      }
+      .click{
+        border: 1px solid rgba(0,0,0,.8);
+        cursor: pointer;
+      }
+      .click:hover{
+        background-color: rgba(201,201,255,1);
+        color: rgba(0,0,0,.75);
+        border: 1px solid rgba(0,0,0,.2);
+      }
+    </style>
+  </body>
+</html>

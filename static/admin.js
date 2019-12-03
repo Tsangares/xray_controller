@@ -1,11 +1,12 @@
 
 function save(){
   folderName=prompt("What is the name of this dataset?\n(Leave blank for unixtime)")
-  $.post('/save',{folder: folderName})
+  $.post('/save',{folder: folderName},(d)=>alert("Save completed!"))
 }
 function motorResponse(axis,data){
   console.log(axis,data)
-  if (data!='Error'){
+  console.log(data,data.includes('Motor Error'))
+  if(!data.includes('Motor Error')){
     $('#'+axis).text(Math.round(Number(data))).css('color','black')
 	alert("Motor movement completed.")
     Push.create('Motor finished moving!',{timeout: 3000,onClick: function () {
@@ -14,8 +15,8 @@ function motorResponse(axis,data){
     }})
   }else{
     $('#'+axis).css('color','red')
-	alert("Motor Error")
-    Push.create('Failed to move moter!',{timeout: 3000,onClick: function () {
+	alert(data)
+    Push.create('Failed to move motor!',{timeout: 3000,onClick: function () {
         window.focus();
         this.close();
     }})

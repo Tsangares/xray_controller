@@ -39,15 +39,32 @@ class Map:
                 else:
                     quit(-1)
             reduced.append(item)
-            
-
-    def shape(self,minimums):
+    def pulseDiff(self,minimums,maximums,n=None):
         img=[[-1 for i in range(self.columns)] for j in range(self.rows)]
         for j in range(self.rows):
             for i in range(self.columns):
                 try:
                     chan=int(self.mapping[j][i])
-                    img[j][i]=mean(minimums[chan])
+                    if n is None:
+                        diff=[maximums[chan][i] - minimums[chan][i] for i in range(len(minimums[chan]))]
+                        img[j][i]=mean(diff)
+                    else:
+                        img[j][i]=maximums[chan][n] - minimums[chan][n]
+                except Exception as e:
+                    #print(e)
+                    img[j][i]=numpy.nan
+        return img
+        pass
+    def shape(self,values,n=None):
+        img=[[-1 for i in range(self.columns)] for j in range(self.rows)]
+        for j in range(self.rows):
+            for i in range(self.columns):
+                try:
+                    chan=int(self.mapping[j][i])
+                    if n is None:
+                        img[j][i]=mean(values[chan])
+                    else:
+                        img[j][i]=values[chan][n]
                 except:
                     img[j][i]=numpy.nan
         return img
